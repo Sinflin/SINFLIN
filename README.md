@@ -5,8 +5,11 @@ I believe in learning by building — most of my repositories reflect real probl
 Always growing. Always shipping.
 
 🔭 Currently working on: — Small Scale Security Project
+
 🌱 Currently learning: — Networking
+
 📫 Reach me at: — adityvishwakarama257@gmail.com
+
 ⚡ Fun fact: — I am a very big fan of reading Light Novels written by japanese authors
 
 ## 🌐 Socials:
