@@ -4,13 +4,7 @@ I'm a computer science student in specilisation of cybersecurity  with a focus o
 I believe in learning by building — most of my repositories reflect real problems I explored, experiments I ran, or concepts I tried to understand more deeply.
 Always growing. Always shipping.
 
-🔭 Currently working on: — Small Scale Security Project
-
-🌱 Currently learning: — Networking
-
 📫 Reach me at: — adityvishwakarama257@gmail.com
-
-⚡ Fun fact: — I am a very big fan of reading Light Novels written by japanese authors
 
 ## 🌐 Socials:
 [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/itz.aditya.19) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/www.linkedin.com/in/aditya-vishwakarma-918084363) [![Pinterest](https://img.shields.io/badge/Pinterest-%23E60023.svg?logo=Pinterest&logoColor=white)](https://pinterest.com/Sinflin) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:adityvishwakarama257@gmail.com) 
