@@ -1,32 +1,39 @@
-Hi, I'm Aditya Vishwakarma
-
-I'm a computer science student in specilisation of cybersecurity  with a focus on Python and Java, currently sharpening my skills through hands-on projects and consistent practice.
-I believe in learning by building — most of my repositories reflect real problems I explored, experiments I ran, or concepts I tried to understand more deeply.
-Always growing. Always shipping.
-
-📫 Reach me at: — adityvishwakarama257@gmail.com
-
-## 🌐 Socials:
-[![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/itz.aditya.19) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/www.linkedin.com/in/aditya-vishwakarma-918084363) [![Pinterest](https://img.shields.io/badge/Pinterest-%23E60023.svg?logo=Pinterest&logoColor=white)](https://pinterest.com/Sinflin) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:adityvishwakarama257@gmail.com) 
-
-<!-- Snake Game Repo View -->
-
 <div align="center">
-  <img src="https://profile-readme-generator.com/assets/snake.svg" alt="Snake animation" />
+
+<img src="./assets/banner.png" alt="The Philosophy of ReLIFE" width="100%" />
+
+<br/>
+
+<img src="https://readme-typing-svg.demolab.com?font=Fredoka&weight=600&size=22&duration=1&pause=100000&color=3B6FD4&center=true&vCenter=true&repeat=false&width=500&height=40&lines=Hey+I'm+Aditya+Vishwakarma" alt="Hey I'm Aditya Vishwakarma" />
+
 </div>
 
-# 💻 Tech Stack:
-![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Windows Terminal](https://img.shields.io/badge/Windows%20Terminal-%234D4D4D.svg?style=for-the-badge&logo=windows-terminal&logoColor=white) ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white) ![Epic Games](https://img.shields.io/badge/epicgames-%23313131.svg?style=for-the-badge&logo=epicgames&logoColor=white) ![Itch.io](https://img.shields.io/badge/Itch-%23FF0B34.svg?style=for-the-badge&logo=Itch.io&logoColor=white) ![nVIDIA](https://img.shields.io/badge/nVIDIA-%2376B900.svg?style=for-the-badge&logo=nVIDIA&logoColor=white) ![Unity](https://img.shields.io/badge/unity-%23000000.svg?style=for-the-badge&logo=unity&logoColor=white) ![Ubisoft](https://img.shields.io/badge/Ubisoft-%23F5F5F5.svg?style=for-the-badge&logo=Ubisoft&logoColor=black) ![Steam](https://img.shields.io/badge/steam-%23000000.svg?style=for-the-badge&logo=steam&logoColor=white) ![Square Enix](https://img.shields.io/badge/SquareEnix-%23ED1C24.svg?style=for-the-badge&logo=SquareEnix&logoColor=white)
+<br/>
 
+**I'm a computer science student specialising in cybersecurity, with a focus on Python and Java, currently sharpening my skills through hands-on projects and consistent practice. I believe in learning by building — most of my repositories reflect real problems I explored, experiments I ran, or concepts I tried to understand more deeply. Always growing. Always shipping.**
 
-## 🏆 GitHub Trophies
-![](https://github-profile-trophy.vercel.app/?username=sinflin&theme=radical&no-frame=false&no-bg=false&margin-w=4)
+<br/>
 
-### ✍️ Random Dev Quote
-![](https://quotes-github-readme.vercel.app/api?type=vetical&theme=tokyonight)
+<div align="center">
 
+<a href="https://instagram.com/itz.aditya.19">
+  <img src="https://img.shields.io/badge/-Instagram-black?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" height="50" />
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://www.linkedin.com/in/aditya-vishwakarma-918084363">
+  <img src="https://img.shields.io/badge/-LinkedIn-black?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" height="50" />
+</a>
 
----
-[![](https://komarev.com/ghpvc/?username=sinflin&icon=7&color=10)](https://visitcount.itsvg.in)
+<br/><br/>
 
-<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
+<img src="https://readme-typing-svg.demolab.com?font=Lilita+One&size=20&duration=1&pause=100000&color=3B6FD4&center=true&vCenter=true&repeat=false&width=700&height=40&lines=Currently+Working+On+---+Shizukasa+%3CAn+E2EE+Web+ChatApp%3E" alt="Currently Working On Shizukasa, an E2EE Web ChatApp" />
+
+<br/>
+
+<img src="./assets/working.gif" alt="Working" width="500" />
+
+<br/><br/>
+
+<img src="https://readme-typing-svg.demolab.com?font=Lilita+One&size=18&duration=1&pause=100000&color=3B6FD4&center=true&vCenter=true&repeat=false&width=600&height=40&lines=Due+To+Less+Creativity+This+Is+The+Max+I+Can+Do" alt="Due To Less Creativity This Is The Max I Can Do" />
+
+</div>
