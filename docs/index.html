@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b0f">
+  <meta name="description" content="Sinflin's live GitHub profile dashboard: public repositories, stars, languages, and recent public activity.">
+  <title>Sinflin · GitHub Dashboard</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #080a0d;
+      --panel: #101216;
+      --panel-2: #14171c;
+      --line: rgba(240, 199, 73, .24);
+      --gold: #f2c94c;
+      --gold-soft: #ffe28a;
+      --text: #f4f1e9;
+      --muted: #a7a8ad;
+      --green: #5bd18a;
+      --red: #ff7777;
+      --radius: 18px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: radial-gradient(ellipse at 80% 0%, #252017 0, transparent 37%), var(--bg); color: var(--text); }
+    a { color: inherit; }
+    .wrap { width: min(1180px, calc(100% - 36px)); margin: 0 auto; }
+    .hero {
+      min-height: clamp(290px, 37vw, 440px);
+      display: flex; align-items: end;
+      background-image: linear-gradient(180deg, rgba(4,5,8,.08) 32%, rgba(4,5,8,.88) 100%), url('./assets/profile-banner.png');
+      background-size: cover; background-position: center 46%;
+      border-bottom: 1px solid rgba(242,201,76,.22);
+    }
+    .hero-inner { padding: 34px 0 28px; display: flex; justify-content: space-between; align-items: end; gap: 20px; width: 100%; }
+    .eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .18em; font-size: .74rem; font-weight: 800; }
+    h1 { margin: 7px 0 4px; font-size: clamp(2.2rem, 5vw, 4rem); letter-spacing: -.045em; }
+    .hero p { color: #e2ddd0; margin: 0; }
+    .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .button { border: 1px solid var(--line); background: rgba(9,11,15,.82); color: var(--text); text-decoration: none; padding: 11px 15px; border-radius: 999px; font-size: .88rem; font-weight: 700; cursor: pointer; }
+    .button.primary { background: var(--gold); color: #19150a; border-color: var(--gold); }
+    .button:disabled { opacity: .55; cursor: wait; }
+    main { padding: 24px 0 44px; }
+    .section-title { display: flex; align-items: center; gap: 12px; font-size: 1.18rem; margin: 0 0 15px; color: var(--gold); }
+    .section-title:after { content: ""; height: 1px; background: var(--line); flex: 1; }
+    .grid { display: grid; gap: 16px; }
+    .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-bottom: 22px; }
+    .two { grid-template-columns: 1.05fr 1.4fr; margin-bottom: 22px; }
+    .panel { border: 1px solid var(--line); background: linear-gradient(145deg, rgba(21,23,27,.97), rgba(11,13,16,.97)); border-radius: var(--radius); padding: 20px; box-shadow: 0 12px 38px rgba(0,0,0,.18); min-width: 0; }
+    .stat { min-height: 116px; }
+    .stat-label { color: var(--muted); font-size: .83rem; }
+    .stat-value { display: block; margin-top: 8px; font-size: clamp(1.7rem, 3vw, 2.35rem); font-weight: 800; letter-spacing: -.04em; color: var(--gold-soft); font-variant-numeric: tabular-nums; }
+    .stat-note { color: var(--muted); font-size: .72rem; margin-top: 4px; }
+    .bio { color: #dedbd4; line-height: 1.65; min-height: 42px; }
+    .profile-line { display: flex; gap: 11px; align-items: center; margin-top: 16px; color: var(--muted); font-size: .88rem; flex-wrap: wrap; }
+    .dot { width: 8px; height: 8px; display: inline-block; border-radius: 50%; background: var(--green); box-shadow: 0 0 14px rgba(91,209,138,.5); }
+    .stack { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 16px; }
+    .chip { display: inline-flex; align-items: center; padding: 8px 11px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.035); color: #e8e5dd; border-radius: 999px; font-size: .83rem; }
+    .activity-head { display: flex; gap: 12px; align-items: start; justify-content: space-between; flex-wrap: wrap; }
+    .legend { color: var(--muted); font-size: .76rem; }
+    .heatmap { display: grid; grid-template-columns: repeat(14, minmax(8px, 1fr)); gap: 6px; margin: 18px 0 9px; }
+    .cell { aspect-ratio: 1; border-radius: 4px; background: #24272d; border: 1px solid rgba(255,255,255,.025); }
+    .cell[data-level="1"] { background: #655421; }
+    .cell[data-level="2"] { background: #a78024; }
+    .cell[data-level="3"] { background: #d7a927; }
+    .cell[data-level="4"] { background: #ffdc52; box-shadow: 0 0 12px rgba(255,220,82,.13); }
+    .heat-labels { display: flex; justify-content: space-between; color: var(--muted); font-size: .73rem; }
+    .subtle { color: var(--muted); font-size: .82rem; line-height: 1.55; }
+    .repo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .featured-grid { grid-template-columns: 1fr; }
+    .featured-card { min-height: 0; padding: 13px; }
+    .featured-icon { color: var(--gold); font-size: 1.15rem; margin-bottom: 7px; }
+    .featured-state { color: var(--muted); font-size: .73rem; margin-top: 10px; }
+    .repo-card { display: flex; flex-direction: column; min-height: 160px; text-decoration: none; transition: transform .16s ease, border-color .16s ease; }
+    .repo-card:hover { transform: translateY(-3px); border-color: rgba(242,201,76,.6); }
+    .repo-name { color: var(--gold-soft); font-weight: 800; overflow-wrap: anywhere; }
+    .repo-desc { color: #c4c4c7; font-size: .85rem; line-height: 1.5; margin: 9px 0 16px; flex: 1; }
+    .repo-meta { display: flex; flex-wrap: wrap; gap: 12px; color: var(--muted); font-size: .76rem; }
+    .feed { display: grid; gap: 10px; }
+    .event { border-left: 2px solid rgba(242,201,76,.55); padding: 2px 0 3px 12px; }
+    .event-title { font-size: .87rem; }
+    .event-meta { color: var(--muted); font-size: .74rem; margin-top: 4px; }
+    .empty { color: var(--muted); border: 1px dashed rgba(255,255,255,.15); border-radius: 12px; padding: 16px; font-size: .86rem; }
+    .status { min-height: 20px; color: var(--muted); font-size: .78rem; }
+    .status.error { color: var(--red); }
+    .foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .78rem; }
+    .foot a { color: var(--gold-soft); text-decoration: none; }
+    .quote { text-align: center; color: #d9d3c6; font-family: Georgia, serif; font-style: italic; padding: 20px 0 4px; line-height: 1.6; }
+    @media (max-width: 850px) { .stats { grid-template-columns: repeat(2, minmax(0,1fr)); } .two { grid-template-columns: 1fr; } .repo-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (max-width: 560px) { .wrap { width: min(100% - 24px, 1180px); } .hero { min-height: 330px; background-position: 55% center; } .hero-inner { display: block; } .hero-actions { margin-top: 16px; } .panel { padding: 16px; } .repo-grid { grid-template-columns: 1fr; } .heatmap { gap: 4px; } .stats { gap: 10px; } .stat { min-height: 100px; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *:before, *:after { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <div class="eyebrow">GitHub · Learning in public</div>
+        <h1>Sinflin</h1>
+        <p>Cybersecurity student · Developer · Lifelong learner</p>
+      </div>
+      <div class="hero-actions">
+        <a class="button" href="https://github.com/Sinflin" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a>
+        <button class="button primary" id="refreshButton" type="button">↻ Refresh now</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section aria-labelledby="overviewTitle">
+      <h2 class="section-title" id="overviewTitle">Live GitHub Overview</h2>
+      <div class="grid stats">
+        <article class="panel stat"><div class="stat-label">Public repositories</div><strong class="stat-value" id="repoCount">—</strong><div class="stat-note">Owned public repositories</div></article>
+        <article class="panel stat"><div class="stat-label">Followers</div><strong class="stat-value" id="followers">—</strong><div class="stat-note">People following this profile</div></article>
+        <article class="panel stat"><div class="stat-label">Following</div><strong class="stat-value" id="following">—</strong><div class="stat-note">Profiles followed</div></article>
+        <article class="panel stat"><div class="stat-label">Stars on tracked repos</div><strong class="stat-value" id="stars">—</strong><div class="stat-note">Sum across up to 100 fetched public repositories</div></article>
+      </div>
+    </section>
+
+    <section class="grid two" aria-label="About and activity summary">
+      <article class="panel">
+        <h2 class="section-title">About Me</h2>
+        <div class="bio" id="bio">Loading public profile information…</div>
+        <div class="profile-line"><span class="dot" aria-hidden="true"></span><span id="profileStatus">Connecting to GitHub API</span></div>
+        <div class="stack" aria-label="Areas of interest">
+          <span class="chip">Cybersecurity</span><span class="chip">Digital Forensics</span><span class="chip">AI</span><span class="chip">Linux</span>
+        </div>
+      </article>
+      <article class="panel">
+        <div class="activity-head">
+          <h2 class="section-title" style="flex:1">Public Activity · 28 Days</h2>
+          <span class="legend">Observed events · latest 100 returned by GitHub</span>
+        </div>
+        <div class="heatmap" id="activityGrid" role="img" aria-label="Public GitHub events during the last 28 days"></div>
+        <div class="heat-labels"><span>28 days ago</span><span>Today</span></div>
+        <p class="subtle" id="activityNote">This view counts public events available from GitHub's Events API. It is not a full contribution calendar and does not include private activity.</p>
+      </article>
+    </section>
+
+    <section class="grid two" aria-label="Featured projects and recent events">
+      <article class="panel">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="grid featured-grid" id="featuredGrid">
+          <div class="empty">Checking for matching public repositories…</div>
+        </div>
+        <p class="subtle" style="margin-bottom:0">A card links to GitHub only when a matching public repository is found.</p>
+      </article>
+      <article class="panel">
+        <h2 class="section-title">Recent Public Activity</h2>
+        <div class="feed" id="eventFeed"><div class="empty">Fetching recent public events…</div></div>
+      </article>
+    </section>
+
+    <section class="panel" style="margin-bottom:22px">
+      <h2 class="section-title">Latest Public Repositories</h2>
+      <div class="grid repo-grid" id="repoGrid"><div class="empty">Fetching repositories…</div></div>
+      <p class="subtle" style="margin-bottom:0">Most-starred items from the latest public repositories returned by GitHub.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="languagesTitle">
+      <h2 class="section-title" id="languagesTitle">Repository Languages</h2>
+      <div class="stack" id="languageStack"><span class="chip">Loading language data…</span></div>
+      <p class="subtle" style="margin-bottom:0">Counts each fetched repository's primary language once; this is a repository mix, not a byte-by-byte code breakdown.</p>
+    </section>
+
+    <div class="quote">Stay curious. Keep investigating.</div>
+    <div class="foot">
+      <span id="lastUpdated">Last updated: waiting for first response…</span>
+      <span class="status" id="apiStatus" role="status" aria-live="polite">Connecting…</span>
+      <span>Data: <a href="https://docs.github.com/en/rest" target="_blank" rel="noopener noreferrer">GitHub REST API</a> · <a href="https://github.com/Sinflin" target="_blank" rel="noopener noreferrer">@Sinflin</a></span>
+    </div>
+  </main>
+
+  <script src="./tracker.js" defer></script>
+</body>
+</html>
