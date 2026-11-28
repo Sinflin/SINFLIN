@@ -2,7 +2,9 @@ name: Deploy GitHub profile dashboard
 
 on:
   push:
-    branches: [main, master]
+    branches:
+      - main
+      - master
     paths:
       - 'docs/**'
       - '.github/workflows/deploy-pages.yml'
@@ -10,28 +12,46 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: github-pages
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+
+      - name: Verify dashboard files exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f docs/index.html || { echo 'ERROR: docs/index.html is missing. Upload the docs folder to the repository root.'; exit 1; }
+          test -f docs/tracker.js || { echo 'ERROR: docs/tracker.js is missing.'; exit 1; }
+          test -f docs/assets/profile-banner.png || { echo 'ERROR: docs/assets/profile-banner.png is missing.'; exit 1; }
+          echo 'Dashboard files found:'
+          find docs -maxdepth 3 -type f -print | sort
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
-      - name: Upload dashboard site
+
+      - name: Upload dashboard site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs
+          path: ./docs
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
